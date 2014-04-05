@@ -8,6 +8,8 @@ import com.unnamestudio.framework.Graphics;
 import com.unnamestudio.framework.Screen;
 import com.unnamestudio.framework.Input.TouchEvent;
 
+
+//cosmo starts to work with counter screen
 public class CounterScreen extends Screen {
 	public CounterScreen(Game game) {
 		super(game);
