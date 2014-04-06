@@ -21,7 +21,7 @@ public class GameRulesScreen extends Screen {
 		for(int i = 0; i < len; i++) { 
 			TouchEvent event = touchEvents.get(i);
 			if(event.type == TouchEvent.TOUCH_UP) {
-				if(inBounds(event, 253, 1037, 215, 200)){
+				if(inBounds(event, 0, 1074, 272, 206)){
 					/*Assets.pop.play(1); //on click sound not existing */
 					game.setScreen(new MainMenuScreen(game));
 				}
@@ -42,7 +42,7 @@ public class GameRulesScreen extends Screen {
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
 		g.drawPixmap(Assets.game_rules_screen_bg, 0, 0);
-		g.drawPixmap(Assets.game_rules_screen_temp, 0, 0);//temp file to be del
+		g.drawPixmap(Assets.main_screen_exit_button, 0, 1074);
 	}
 	
 	@Override
