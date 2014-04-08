@@ -401,7 +401,7 @@ public class CounterScreen extends Screen {
 				if (isCounterStarted == true){
 					
 					//clicking next round button
-					if(inBounds(event, 0, 525, 360, 211) && isUpdatingSpade == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond == false){
+					if(inBounds(event, 0, 525, 360, 211) && inputError == false && isUpdatingSpade == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond == false){
 						if (delta_spade == 0 && delta_heart > 0 && delta_club > 0 && delta_diamond > 0 || delta_heart == 0 && delta_spade > 0 && delta_club > 0 && delta_diamond > 0 || delta_club == 0 && delta_spade > 0 && delta_heart > 0 && delta_diamond > 0 || delta_diamond == 0 && delta_spade > 0 && delta_heart > 0 && delta_club > 0){
 							Settings.round ++;
 							if (delta_spade == 0){
@@ -476,7 +476,7 @@ public class CounterScreen extends Screen {
 					}
 					
 					//updating spade's marks
-					if(isUpdatingSpade == false && inputError == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond){
+					if(isUpdatingSpade == false && inputError == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond == false){
 						if(inBounds(event, 32, 22, 300, 300)){
 							isUpdatingSpade = true;
 							return;
@@ -641,7 +641,7 @@ public class CounterScreen extends Screen {
 					//end of updating spade's marks
 					
 					//updating heart's marks
-					if(isUpdatingSpade == false && inputError == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond){
+					if(isUpdatingSpade == false && inputError == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond == false){
 						if(inBounds(event, 396, 22, 300, 300)){
 							isUpdatingHeart = true;
 							return;
@@ -806,7 +806,7 @@ public class CounterScreen extends Screen {
 					//end of updating heart's marks
 					
 					//updating club's marks
-					if(isUpdatingSpade == false && inputError == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond){
+					if(isUpdatingSpade == false && inputError == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond == false){
 						if(inBounds(event, 396, 950, 300, 300)){
 							isUpdatingClub = true;
 							return;
@@ -971,7 +971,7 @@ public class CounterScreen extends Screen {
 					//end of updating club's marks
 					
 					//updating diamond's marks
-					if(isUpdatingSpade == false && inputError == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond){
+					if(isUpdatingSpade == false && inputError == false && isUpdatingHeart == false && isUpdatingClub == false && isUpdatingDiamond == false){
 						if(inBounds(event, 32, 950, 300, 300)){
 							isUpdatingDiamond = true;
 							return;
