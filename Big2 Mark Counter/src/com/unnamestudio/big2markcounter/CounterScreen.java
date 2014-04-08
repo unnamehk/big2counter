@@ -34,6 +34,13 @@ public class CounterScreen extends Screen {
 	public int mapDiamondX = 0;
 	public int mapDiamondY = 0;
 	
+	public int mapNumber(int number){
+		return (int)((number)*15);
+	}
+	public int digit(int number, int position){
+        return (int)(number/Math.pow(10,position))%10;
+        }
+	
 	public void mapSpade(int k){//mapping x & y coordinate for buttonsB
 		if ( k == -1 || k == 2 || k == 5 || k == 8 || k == 11){
 			mapSpadeX = 0;
@@ -416,6 +423,7 @@ public class CounterScreen extends Screen {
 								Settings.spade_be_fired ++;
 							}
 							delta_spade = -1;
+							mapSpade(delta_spade);
 							
 							if (delta_heart == 0){
 								Settings.heart_wins ++;
@@ -429,6 +437,7 @@ public class CounterScreen extends Screen {
 								Settings.heart_be_fired ++;
 							}
 							delta_heart = -1;
+							mapHeart(delta_heart);
 							
 							if (delta_club == 0){
 								Settings.club_wins ++;
@@ -442,6 +451,7 @@ public class CounterScreen extends Screen {
 								Settings.club_be_fired ++;
 							}
 							delta_club = -1;
+							mapClub(delta_club);
 							
 							if (delta_diamond == 0){
 								Settings.diamond_wins ++;
@@ -455,9 +465,11 @@ public class CounterScreen extends Screen {
 								Settings.diamond_be_fired ++;
 							}
 							delta_diamond = -1;
+							mapDiamond(delta_diamond);
 							return;
 						}else{
 							inputError = true;
+							return;
 						}
 					}//end of clicking next round button
 					
@@ -1178,6 +1190,7 @@ public class CounterScreen extends Screen {
 				g.drawPixmap(Assets.counter_screen_counts_zh, 396, 342);
 				g.drawPixmap(Assets.counter_screen_counts_zh, 32, 747);
 				g.drawPixmap(Assets.counter_screen_counts_zh, 396, 747);
+				g.drawPixmap(Assets.counter_screen_round, 529, 0, 0, 0, 191, 192);
 			}
 			if (Settings.lang == 2){
 				g.drawPixmap(Assets.counter_screen_buttonsA, 0, 525, 0, 211*4, 720, 211);
@@ -1185,6 +1198,7 @@ public class CounterScreen extends Screen {
 				g.drawPixmap(Assets.counter_screen_counts_en, 396, 342);
 				g.drawPixmap(Assets.counter_screen_counts_en, 32, 747);
 				g.drawPixmap(Assets.counter_screen_counts_en, 396, 747);
+				g.drawPixmap(Assets.counter_screen_round, 529, 0, 0, 192, 191, 192);
 			}
 			if (Settings.lang == 3){
 				g.drawPixmap(Assets.counter_screen_buttonsA, 0, 525, 0, 211*5, 720, 211);
@@ -1192,11 +1206,149 @@ public class CounterScreen extends Screen {
 				g.drawPixmap(Assets.counter_screen_counts_cn, 396, 342);
 				g.drawPixmap(Assets.counter_screen_counts_cn, 32, 747);
 				g.drawPixmap(Assets.counter_screen_counts_cn, 396, 747);
+				g.drawPixmap(Assets.counter_screen_round, 529, 0, 0, 0, 191, 192);
 			}
+			//round number
+			g.drawPixmap(Assets.counter_screen_numbers, 619+2*15, 49, mapNumber(digit(Settings.round, 0)), 0, 15, 25);
+			if (Settings.round >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 619+1*15, 49, mapNumber(digit(Settings.round, 1)), 0, 15, 25);
+			}
+			if (Settings.round >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 619, 49, mapNumber(digit(Settings.round, 2)), 0, 15, 25);
+			}
+			
+			//spade's statistic
+			g.drawPixmap(Assets.counter_screen_numbers, 271+3*15, 341, mapNumber(digit(Settings.spade_balance, 0)), 0, 15, 25);
+			if (Settings.spade_balance >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+2*15, 341, mapNumber(digit(Settings.spade_balance, 1)), 0, 15, 25);
+			}
+			if (Settings.spade_balance >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+1*15, 341, mapNumber(digit(Settings.spade_balance, 2)), 0, 15, 25);
+			}
+			if (Settings.spade_balance >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+0*15, 341, mapNumber(digit(Settings.spade_balance, 3)), 0, 15, 25);
+			}
+			g.drawPixmap(Assets.counter_screen_numbers, 271+3*15, 409, mapNumber(digit(Settings.spade_be_fired, 0)), 0, 15, 25);
+			if (Settings.spade_be_fired >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+2*15, 409, mapNumber(digit(Settings.spade_be_fired, 1)), 0, 15, 25);
+			}
+			if (Settings.spade_be_fired >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+1*15, 409, mapNumber(digit(Settings.spade_be_fired, 2)), 0, 15, 25);
+			}
+			if (Settings.spade_be_fired >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+0*15, 409, mapNumber(digit(Settings.spade_be_fired, 3)), 0, 15, 25);
+			}
+			g.drawPixmap(Assets.counter_screen_numbers, 271+3*15, 476, mapNumber(digit(Settings.spade_wins, 0)), 0, 15, 25);
+			if (Settings.spade_wins >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+2*15, 476, mapNumber(digit(Settings.spade_wins, 1)), 0, 15, 25);
+			}
+			if (Settings.spade_wins >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+1*15, 476, mapNumber(digit(Settings.spade_wins, 2)), 0, 15, 25);
+			}
+			if (Settings.spade_wins >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+0*15, 476, mapNumber(digit(Settings.spade_wins, 3)), 0, 15, 25);
+			}//end of spade's statistic
+			
+			//heart's statistic
+			g.drawPixmap(Assets.counter_screen_numbers, 631+3*15, 341, mapNumber(digit(Settings.heart_balance, 0)), 0, 15, 25);
+			if (Settings.heart_balance >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+2*15, 341, mapNumber(digit(Settings.heart_balance, 1)), 0, 15, 25);
+			}
+			if (Settings.heart_balance >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+1*15, 341, mapNumber(digit(Settings.heart_balance, 2)), 0, 15, 25);
+			}
+			if (Settings.heart_balance >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+0*15, 341, mapNumber(digit(Settings.heart_balance, 3)), 0, 15, 25);
+			}
+			g.drawPixmap(Assets.counter_screen_numbers, 631+3*15, 409, mapNumber(digit(Settings.heart_be_fired, 0)), 0, 15, 25);
+			if (Settings.heart_be_fired >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+2*15, 409, mapNumber(digit(Settings.heart_be_fired, 1)), 0, 15, 25);
+			}
+			if (Settings.heart_be_fired >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+1*15, 409, mapNumber(digit(Settings.heart_be_fired, 2)), 0, 15, 25);
+			}
+			if (Settings.heart_be_fired >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+0*15, 409, mapNumber(digit(Settings.heart_be_fired, 3)), 0, 15, 25);
+			}
+			g.drawPixmap(Assets.counter_screen_numbers, 631+3*15, 476, mapNumber(digit(Settings.heart_wins, 0)), 0, 15, 25);
+			if (Settings.heart_wins >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+2*15, 476, mapNumber(digit(Settings.heart_wins, 1)), 0, 15, 25);
+			}
+			if (Settings.heart_wins >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+1*15, 476, mapNumber(digit(Settings.heart_wins, 2)), 0, 15, 25);
+			}
+			if (Settings.heart_wins >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+0*15, 476, mapNumber(digit(Settings.heart_wins, 3)), 0, 15, 25);
+			}//end of heart's statistic
+			
+			//club's statistic
+			g.drawPixmap(Assets.counter_screen_numbers, 631+3*15, 747, mapNumber(digit(Settings.club_balance, 0)), 0, 15, 25);
+			if (Settings.club_balance >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+2*15, 747, mapNumber(digit(Settings.club_balance, 1)), 0, 15, 25);
+			}
+			if (Settings.club_balance >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+1*15, 747, mapNumber(digit(Settings.club_balance, 2)), 0, 15, 25);
+			}
+			if (Settings.club_balance >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+0*15, 747, mapNumber(digit(Settings.club_balance, 3)), 0, 15, 25);
+			}
+			g.drawPixmap(Assets.counter_screen_numbers, 631+3*15, 818, mapNumber(digit(Settings.club_be_fired, 0)), 0, 15, 25);
+			if (Settings.club_be_fired >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+2*15, 818, mapNumber(digit(Settings.club_be_fired, 1)), 0, 15, 25);
+			}
+			if (Settings.club_be_fired >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+1*15, 818, mapNumber(digit(Settings.club_be_fired, 2)), 0, 15, 25);
+			}
+			if (Settings.club_be_fired >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+0*15, 818, mapNumber(digit(Settings.club_be_fired, 3)), 0, 15, 25);
+			}
+			g.drawPixmap(Assets.counter_screen_numbers, 631+3*15, 888, mapNumber(digit(Settings.club_wins, 0)), 0, 15, 25);
+			if (Settings.club_wins >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+2*15, 888, mapNumber(digit(Settings.club_wins, 1)), 0, 15, 25);
+			}
+			if (Settings.club_wins >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+1*15, 888, mapNumber(digit(Settings.club_wins, 2)), 0, 15, 25);
+			}
+			if (Settings.club_wins >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 631+0*15, 888, mapNumber(digit(Settings.club_wins, 3)), 0, 15, 25);
+			}//end of club's statistic
+			
+			//diamond's statistic
+			g.drawPixmap(Assets.counter_screen_numbers, 271+3*15, 747, mapNumber(digit(Settings.diamond_balance, 0)), 0, 15, 25);
+			if (Settings.diamond_balance >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+2*15, 747, mapNumber(digit(Settings.diamond_balance, 1)), 0, 15, 25);
+			}
+			if (Settings.diamond_balance >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+1*15, 747, mapNumber(digit(Settings.diamond_balance, 2)), 0, 15, 25);
+			}
+			if (Settings.diamond_balance >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+0*15, 747, mapNumber(digit(Settings.diamond_balance, 3)), 0, 15, 25);
+			}
+			g.drawPixmap(Assets.counter_screen_numbers, 271+3*15, 818, mapNumber(digit(Settings.diamond_be_fired, 0)), 0, 15, 25);
+			if (Settings.diamond_be_fired >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+2*15, 818, mapNumber(digit(Settings.diamond_be_fired, 1)), 0, 15, 25);
+			}
+			if (Settings.diamond_be_fired >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+1*15, 818, mapNumber(digit(Settings.diamond_be_fired, 2)), 0, 15, 25);
+			}
+			if (Settings.diamond_be_fired >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+0*15, 818, mapNumber(digit(Settings.diamond_be_fired, 3)), 0, 15, 25);
+			}
+			g.drawPixmap(Assets.counter_screen_numbers, 271+3*15, 888, mapNumber(digit(Settings.diamond_wins, 0)), 0, 15, 25);
+			if (Settings.diamond_wins >= 10){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+2*15, 888, mapNumber(digit(Settings.diamond_wins, 1)), 0, 15, 25);
+			}
+			if (Settings.diamond_wins >= 100){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+1*15, 888, mapNumber(digit(Settings.diamond_wins, 2)), 0, 15, 25);
+			}
+			if (Settings.diamond_wins >= 1000){
+				g.drawPixmap(Assets.counter_screen_numbers, 271+0*15, 888, mapNumber(digit(Settings.diamond_wins, 3)), 0, 15, 25);
+			}//end of diamond's statistic
+			
 			g.drawPixmap(Assets.counter_screen_buttonsB, 120, 84, mapSpadeX, mapSpadeY, 240, 256);
 			g.drawPixmap(Assets.counter_screen_buttonsB, 480, 84, mapHeartX, mapHeartY, 240, 256);
-			g.drawPixmap(Assets.counter_screen_buttonsB, 120, 1014, mapClubX, mapClubY, 240, 256);
-			g.drawPixmap(Assets.counter_screen_buttonsB, 480, 1014, mapDiamondX, mapDiamondY, 240, 256);
+			g.drawPixmap(Assets.counter_screen_buttonsB, 480, 1014, mapClubX, mapClubY, 240, 256);
+			g.drawPixmap(Assets.counter_screen_buttonsB, 120, 1014, mapDiamondX, mapDiamondY, 240, 256);
 		}//end of drawings for counter started
 		
 		//drawings for selecting character

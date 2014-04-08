@@ -30,6 +30,7 @@ public class Assets {
 	public static Pixmap counter_screen_counts_cn;
 	public static Pixmap counter_screen_input_error;
 	public static Pixmap counter_screen_numbers;
+	public static Pixmap counter_screen_round;
 	public static Pixmap setting_screen_temp;//temp file to be del
 	public static Pixmap setting_screen_temp_button;//temp file to be del
 }

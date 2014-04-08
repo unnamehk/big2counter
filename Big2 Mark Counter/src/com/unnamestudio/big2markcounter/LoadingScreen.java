@@ -47,6 +47,7 @@ public class LoadingScreen extends Screen {
 			Assets.counter_screen_counts_cn = g.newPixmap("counter_screen_counts_cn.png", PixmapFormat.ARGB8888);
 			Assets.counter_screen_input_error = g.newPixmap("counter_screen_input_error.png", PixmapFormat.ARGB8888);
 			Assets.counter_screen_numbers = g.newPixmap("counter_screen_numbers.png", PixmapFormat.ARGB8888);
+			Assets.counter_screen_round = g.newPixmap("counter_screen_round.png", PixmapFormat.ARGB8888);
 			Assets.setting_screen_temp = g.newPixmap("setting_screen_temp.png", PixmapFormat.ARGB8888);//temp file to be del
 			Assets.setting_screen_temp_button = g.newPixmap("setting_screen_temp_button.png", PixmapFormat.ARGB8888);//temp file to be del
 			Settings.load(game.getFileIO()); 
